@@ -1,5 +1,6 @@
 package ar.meli.agg.weatherpredictor.service;
 
+import ar.meli.agg.weatherpredictor.domain.Weather;
 import ar.meli.agg.weatherpredictor.domain.WeatherPrediction;
 import ar.meli.agg.weatherpredictor.repository.WPRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,13 @@ public class WPService {
     public void save(WeatherPrediction weatherPrediction) {
         if(weatherPrediction != null)
             this.wpRepository.save(weatherPrediction);
+    }
+
+    public void deleteAll() {
+        wpRepository.deleteAll();
+    }
+
+    public Weather predict(Integer day) {
+        return Weather.DROUGHT;
     }
 }

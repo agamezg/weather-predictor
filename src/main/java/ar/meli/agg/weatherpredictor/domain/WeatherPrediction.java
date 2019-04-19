@@ -27,8 +27,8 @@ public class WeatherPrediction {
         this.day = day;
     }
 
-    public Weather getWeather() {
-        return weather;
+    public String getWeather() {
+        return weather.toString();
     }
 
     public void setWeather(Weather weather) {

@@ -24,7 +24,8 @@ public class WeatherPredictorApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        /*WeatherPrediction weatherPrediction = new WeatherPrediction(1, Weather.BEAUTIFULL_DAY);
-        wpService.save(weatherPrediction);*/
+        wpService.deleteAll();
+        WeatherPrediction weatherPrediction = new WeatherPrediction(2, Weather.BEAUTIFULL_DAY);
+        wpService.save(weatherPrediction);
     }
 }
