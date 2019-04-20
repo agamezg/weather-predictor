@@ -4,7 +4,8 @@ public enum Weather {
     DROUGHT("drought"),
     RAIN("rain"),
     HARD_RAIN("hard rain"),
-    BEAUTIFULL_DAY("beautifull day");
+    BEAUTIFULL_DAY("beautifull day"),
+    CLOUDY("cloudy");
 
     private String weather;
 

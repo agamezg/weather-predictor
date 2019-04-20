@@ -33,6 +33,9 @@ public class WPService {
     }
 
     public Weather predict(Integer day) {
-        return Weather.DROUGHT;
+        if(day.compareTo(0) == 0)
+            return Weather.DROUGHT;
+        else
+            return Weather.CLOUDY;
     }
 }

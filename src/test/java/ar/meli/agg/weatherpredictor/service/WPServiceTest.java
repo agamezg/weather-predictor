@@ -36,7 +36,18 @@ public class WPServiceTest {
     public void predictWeatherDay1(){
 
         Integer day = 1;
-        Weather expectedWeather = Weather.DROUGHT;
+        Weather expectedWeather = Weather.CLOUDY;
+
+        Weather weather = wpService.predict(day);
+
+        assertThat(expectedWeather).isEqualTo(weather);
+    }
+
+    @Test
+    public void predictWeatherDay2(){
+
+        Integer day = 2;
+        Weather expectedWeather = Weather.CLOUDY;
 
         Weather weather = wpService.predict(day);
 
