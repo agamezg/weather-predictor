@@ -1,9 +1,6 @@
 package ar.meli.agg.weatherpredictor.domain;
 
-
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 import static ar.meli.agg.weatherpredictor.utils.Constants.*;
@@ -39,19 +36,7 @@ public class SolarSystem{
         planets.forEach(Planet::move);
     }
 
-    public int getVulcanoPeriod() {
-        int vulcanosPeriod = 0;
-        Planet vulcano = planets.stream()
-                .filter(v -> BETASOIDE.equals(v.getName()))
-                .findAny()
-                .orElse(null);
-        if(vulcano != null){
-            vulcanosPeriod = vulcano.getPeriod();
-        }
-        return vulcanosPeriod;
-    }
-
-    public WeatherPrediction prediction() {
-        return new WeatherPrediction(day,Weather.DROUGHT);
+    public Integer getDay() {
+        return day;
     }
 }

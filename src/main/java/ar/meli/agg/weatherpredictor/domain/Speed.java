@@ -22,4 +22,8 @@ class Speed {
     int getTime() {
         return time;
     }
+
+    long getValue() {
+        return angle/time;
+    }
 }

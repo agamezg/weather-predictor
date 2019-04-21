@@ -34,6 +34,6 @@ public class Planet extends Element implements Translation{
 
     @Override
     public void move() {
-        this.polarPosition.moveAngle(speed.getAngle());
+        this.polarPosition.moveAngle(speed.getValue());
     }
 }
