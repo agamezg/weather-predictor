@@ -1,0 +1,5 @@
+applications:
+  - name: weather-predictor
+    memory: 768M
+    random-route: true
+    path: target/weather-predictor-cf.jar

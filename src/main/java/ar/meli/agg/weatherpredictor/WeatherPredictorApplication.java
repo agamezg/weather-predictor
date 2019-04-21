@@ -11,12 +11,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class WeatherPredictorApplication implements CommandLineRunner {
 
-    private final WPService wpService;
+    /*private final WPService wpService;
 
     @Autowired
     public WeatherPredictorApplication(WPService wpService) {
         this.wpService = wpService;
-    }
+    }*/
 
     public static void main(String[] args) {
         SpringApplication.run(WeatherPredictorApplication.class, args);
@@ -24,12 +24,12 @@ public class WeatherPredictorApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        wpService.deleteAll();
+        /*wpService.deleteAll();
         WeatherPrediction weatherPrediction0 = new WeatherPrediction(0, Weather.DROUGHT);
         WeatherPrediction weatherPrediction1 = new WeatherPrediction(1, Weather.CLOUDY);
         WeatherPrediction weatherPrediction2 = new WeatherPrediction(1, Weather.CLOUDY);
         wpService.save(weatherPrediction0);
         wpService.save(weatherPrediction1);
-        wpService.save(weatherPrediction2);
+        wpService.save(weatherPrediction2);*/
     }
 }
