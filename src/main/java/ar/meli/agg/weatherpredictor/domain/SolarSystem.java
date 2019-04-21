@@ -16,10 +16,10 @@ public class SolarSystem{
     private static SolarSystem instance;
 
     private SolarSystem(){
-        this.sun = new Sun(new Position());
-        this.betasoide = new Planet(new Position(2000,0), new Speed(3));
-        this.vulcano = new Planet(new Position(1000,0), new Speed(-5));
-        this.ferengi = new Planet(new Position(2000,0), new Speed(3));
+        this.sun = new Sun(new PolarPosition());
+        this.betasoide = new Planet(new PolarPosition(2000,0), new Speed(3));
+        this.vulcano = new Planet(new PolarPosition(1000,0), new Speed(-5));
+        this.ferengi = new Planet(new PolarPosition(500,0), new Speed(1));
         this.day = 0;
     }
 

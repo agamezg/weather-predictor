@@ -1,13 +1,13 @@
 package ar.meli.agg.weatherpredictor.domain;
 
-class Planet extends Element implements Translation{
+public class Planet extends Element implements Translation{
 
     private Speed speed;
 
     private int period;
 
-    Planet(Position position, Speed speed) {
-        super(position);
+    Planet(PolarPosition polarPosition, Speed speed) {
+        super(polarPosition);
         this.speed = speed;
         this.period = calculatePeriod();
     }
@@ -27,6 +27,6 @@ class Planet extends Element implements Translation{
 
     @Override
     public void move() {
-        this.position.increaseAngle(speed.getAngle());
+        this.polarPosition.increaseAngle(speed.getAngle());
     }
 }

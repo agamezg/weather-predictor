@@ -3,13 +3,15 @@ package ar.meli.agg.weatherpredictor.domain;
 
 public class Element {
 
-    Position position;
+    PolarPosition polarPosition;
 
-    Element(Position position) {
-        this.position = position;
+    Element(PolarPosition polarPosition) {
+        this.polarPosition = polarPosition;
     }
 
-    public Position getPosition() {
-        return position;
+    public PolarPosition getPolarPosition() {
+        return polarPosition;
     }
+
+    public CartesianPosition getCartesianPosition(){return polarPosition.getCartesianPosition();}
 }
