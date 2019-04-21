@@ -1,15 +1,18 @@
 package ar.meli.agg.weatherpredictor.domain;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+import static ar.meli.agg.weatherpredictor.utils.Constants.*;
+
 public class SolarSystem{
 
     private Sun sun;
 
-    private Planet betasoide;
-
-    private Planet vulcano;
-
-    private Planet ferengi;
+    List<Planet> planets;
 
     private Integer day;
 
@@ -17,9 +20,10 @@ public class SolarSystem{
 
     private SolarSystem(){
         this.sun = new Sun(new PolarPosition());
-        this.betasoide = new Planet(new PolarPosition(2000,0), new Speed(3));
-        this.vulcano = new Planet(new PolarPosition(1000,0), new Speed(-5));
-        this.ferengi = new Planet(new PolarPosition(500,0), new Speed(1));
+        Planet betasoide = new Planet(BETASOIDE, new PolarPosition(2000,0), new Speed(3));
+        Planet vulcano = new Planet(VULCANO, new PolarPosition(1000,0), new Speed(-5));
+        Planet ferengi = new Planet(FERENGI,new PolarPosition(500,0), new Speed(1));
+        planets = Arrays.asList(betasoide, vulcano, ferengi);
         this.day = 0;
     }
 
@@ -32,13 +36,19 @@ public class SolarSystem{
 
     public void nextDay(){
         this.day++;
-        betasoide.move();
-        vulcano.move();
-        ferengi.move();
+        planets.forEach(Planet::move);
     }
 
     public int getVulcanoPeriod() {
-        return vulcano.getPeriod();
+        int vulcanosPeriod = 0;
+        Planet vulcano = planets.stream()
+                .filter(v -> BETASOIDE.equals(v.getName()))
+                .findAny()
+                .orElse(null);
+        if(vulcano != null){
+            vulcanosPeriod = vulcano.getPeriod();
+        }
+        return vulcanosPeriod;
     }
 
     public WeatherPrediction prediction() {

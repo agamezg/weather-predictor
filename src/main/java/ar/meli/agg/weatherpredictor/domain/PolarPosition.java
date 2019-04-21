@@ -2,9 +2,9 @@ package ar.meli.agg.weatherpredictor.domain;
 
 public class PolarPosition {
 
-    private long radius;
+    private double radius;
 
-    private long angle;
+    private double angle;
 
     public PolarPosition(long radius, long angle) {
         this.radius = radius;
@@ -16,11 +16,11 @@ public class PolarPosition {
         this.angle = 0;
     }
 
-    public long getRadius() {
+    public double getRadius() {
         return radius;
     }
 
-    public long getAngle() {
+    public double getAngle() {
         return angle;
     }
 
@@ -30,7 +30,16 @@ public class PolarPosition {
         return new CartesianPosition(x,y);
     }
 
-    public void increaseAngle(long angle) {
-        this.angle += angle;
+    public void moveAngle(long angle) {
+        double moved = this.angle+angle;
+
+        if(moved > 360) {
+            moved = moved - 360;
+        }
+        else if(moved < 0){
+            moved = 360 + moved;
+        }
+
+        this.angle = moved;
     }
 }
