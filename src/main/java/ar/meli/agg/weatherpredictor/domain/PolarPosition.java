@@ -6,7 +6,7 @@ public class PolarPosition {
 
     private double angle;
 
-    public PolarPosition(long radius, long angle) {
+    public PolarPosition(double radius, double angle) {
         this.radius = radius;
         this.angle = angle;
     }
@@ -24,9 +24,10 @@ public class PolarPosition {
         return angle;
     }
 
-    public CartesianPosition getCartesianPosition(){
-        double x = radius*Math.cos(angle);
-        double y = radius*Math.sin(angle);
+    public CartesianPosition toCartesianPosition(){
+        double radians = Math.toRadians(this.angle);
+        double x = Math.round(radius*Math.cos(radians));
+        double y = Math.round(radius*Math.sin(radians));
         return new CartesianPosition(x,y);
     }
 
@@ -41,5 +42,9 @@ public class PolarPosition {
         }
 
         this.angle = moved;
+    }
+
+    public void setAngle(double angle){
+        this.angle = angle;
     }
 }

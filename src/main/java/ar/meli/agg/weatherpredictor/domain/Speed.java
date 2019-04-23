@@ -10,7 +10,7 @@ public class Speed {
         this(angle,1);
     }
 
-    private Speed(int angle, int time){
+    public Speed(int angle, int time){
         this.angle = angle;
         this.time = time;
     }

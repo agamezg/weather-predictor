@@ -1,11 +1,14 @@
 package ar.meli.agg.weatherpredictor.utils;
 
 import ar.meli.agg.weatherpredictor.domain.Element;
+import ar.meli.agg.weatherpredictor.domain.Planet;
+import ar.meli.agg.weatherpredictor.domain.PolarPosition;
+import ar.meli.agg.weatherpredictor.domain.Speed;
 
 import java.util.List;
 import java.util.function.Function;
 
-public class UtilsEcuations {
+public class GeometryCalculator {
 
     public static boolean areAligned(List<Element> planets){
         boolean areAligned = true;
@@ -42,5 +45,4 @@ public class UtilsEcuations {
         };
         return lineFunction;
     }
-
 }

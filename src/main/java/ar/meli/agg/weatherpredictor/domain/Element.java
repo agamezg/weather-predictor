@@ -13,5 +13,5 @@ public abstract class Element {
         return polarPosition;
     }
 
-    public CartesianPosition getCartesianPosition(){return polarPosition.getCartesianPosition();}
+    public CartesianPosition getCartesianPosition(){return polarPosition.toCartesianPosition();}
 }

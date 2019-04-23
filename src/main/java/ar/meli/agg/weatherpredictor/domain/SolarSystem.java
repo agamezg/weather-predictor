@@ -1,6 +1,9 @@
 package ar.meli.agg.weatherpredictor.domain;
 
+import ar.meli.agg.weatherpredictor.utils.GeometryCalculator;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 class SolarSystem {
@@ -20,7 +23,9 @@ class SolarSystem {
     }
 
     public boolean areAllAligned() {
-        return true;
+        List<Element> elements = new ArrayList<>(planets);
+        elements.add(sun);
+        return GeometryCalculator.areAligned(elements);
     }
 
     public boolean areThePlanetsAligned() {
