@@ -43,32 +43,28 @@ public class WeatherPredictorControllerTest {
 
     @Test
     public void getWeather() throws Exception {
-        //given
         given(wpService.find(566))
                 .willReturn(aRainyDay());
 
-        //when
         MockHttpServletResponse response = mvc.perform(
                 get("/wp-service/weather?day=566")
                         .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
-        //then
+
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         assertThat(response.getContentAsString()).isEqualTo(weatherJson.write(aRainyDay()).getJson());
     }
 
     @Test
     public void getWeather2() throws Exception {
-        //given
         given(wpService.find(200))
                 .willReturn(aBeautifulDay());
 
-        //when
         MockHttpServletResponse response = mvc.perform(
                 get("/wp-service/weather?day=200")
                         .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
-        //then
+
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         assertThat(response.getContentAsString()).isEqualTo(weatherJson.write(aBeautifulDay()).getJson());
     }
