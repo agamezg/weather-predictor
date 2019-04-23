@@ -8,7 +8,7 @@ public class Planet extends Element implements Translation{
 
     private int period;
 
-    Planet(String name, PolarPosition polarPosition, Speed speed) {
+    public Planet(String name, PolarPosition polarPosition, Speed speed) {
         super(polarPosition);
         this.name =  name;
         this.speed = speed;
