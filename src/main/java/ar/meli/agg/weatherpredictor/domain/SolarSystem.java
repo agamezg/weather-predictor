@@ -1,42 +1,29 @@
 package ar.meli.agg.weatherpredictor.domain;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
-import static ar.meli.agg.weatherpredictor.utils.Constants.*;
+class SolarSystem {
 
-public class SolarSystem{
-
-    private Sun sun;
+    Sun sun;
 
     List<Planet> planets;
 
-    private Integer day;
-
-    private static SolarSystem instance;
-
-    private SolarSystem(){
+    SolarSystem() {
         this.sun = new Sun(new PolarPosition());
-        Planet betasoide = new Planet(BETASOIDE, new PolarPosition(2000,0), new Speed(3));
-        Planet vulcano = new Planet(VULCANO, new PolarPosition(1000,0), new Speed(-5));
-        Planet ferengi = new Planet(FERENGI,new PolarPosition(500,0), new Speed(1));
-        planets = Arrays.asList(betasoide, vulcano, ferengi);
-        this.day = 0;
+        this.planets = new ArrayList<>();
     }
 
-    public static SolarSystem getInstance() {
-        if(instance == null){
-            instance = new SolarSystem();
-        }
-        return instance;
+    public void setPlanets(List<Planet> planets) {
+        this.planets.clear();
+        this.planets.addAll(planets);
     }
 
-    public void nextDay(){
-        this.day++;
-        planets.forEach(Planet::move);
+    public boolean areAllAligned() {
+        return true;
     }
 
-    public Integer getDay() {
-        return day;
+    public boolean areThePlanetsAligned() {
+        return false;
     }
 }

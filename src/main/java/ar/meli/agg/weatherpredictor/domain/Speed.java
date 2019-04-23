@@ -1,12 +1,12 @@
 package ar.meli.agg.weatherpredictor.domain;
 
-class Speed {
+public class Speed {
 
     private int angle;
 
     private int time;
 
-    Speed(int angle) {
+    public Speed(int angle) {
         this(angle,1);
     }
 

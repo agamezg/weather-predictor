@@ -1,7 +1,7 @@
 package ar.meli.agg.weatherpredictor.domain;
 
 
-public class Element {
+public abstract class Element {
 
     PolarPosition polarPosition;
 
