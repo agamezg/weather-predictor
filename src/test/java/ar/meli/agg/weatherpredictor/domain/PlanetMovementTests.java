@@ -6,7 +6,7 @@ import static ar.meli.agg.weatherpredictor.utils.Constants.BETASOIDE;
 import static ar.meli.agg.weatherpredictor.utils.Constants.VULCANO;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class PlanetMovementTest {
+public class PlanetMovementTests {
 
 
     @Test

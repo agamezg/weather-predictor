@@ -1,6 +1,8 @@
 package ar.meli.agg.weatherpredictor.service;
 
-import ar.meli.agg.weatherpredictor.domain.*;
+import ar.meli.agg.weatherpredictor.domain.MLSolarSystem;
+import ar.meli.agg.weatherpredictor.domain.Weather;
+import ar.meli.agg.weatherpredictor.domain.WeatherPrediction;
 import ar.meli.agg.weatherpredictor.repository.WPRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,20 +43,28 @@ public class WPService implements CommandLineRunner {
         WeatherPrediction wp;
         for (int i = 0; i < days; i++){
             wp = predict();
-            wpRepository.save(wp);
             mlSolarSystem.nextDay();
+            wpRepository.save(wp);
         }
     }
 
     WeatherPrediction predict() {
-        WeatherPrediction wp = null;
+        WeatherPrediction wp;
         if(mlSolarSystem.areAllAligned()){
             wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.DROUGHT);
         }
         else if (mlSolarSystem.areThePlanetsAligned()){
             wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.BEAUTIFULL_DAY);
         }
-
+        else if(mlSolarSystem.areTheSunInside()){
+            if(mlSolarSystem.isTheBiggerPerimeter())
+                wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.HARD_RAIN);
+            else
+                wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.RAIN);
+        }
+        else {
+            wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.CLOUDY);
+        }
         return wp;
     }
 
@@ -65,7 +75,7 @@ public class WPService implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         simulate(1);
         simulate(days);
     }

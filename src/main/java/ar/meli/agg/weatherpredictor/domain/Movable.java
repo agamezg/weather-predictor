@@ -1,6 +1,6 @@
 package ar.meli.agg.weatherpredictor.domain;
 
-public interface Translation {
+public interface Movable {
 
     void move();
 }

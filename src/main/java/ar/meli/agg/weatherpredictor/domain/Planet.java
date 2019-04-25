@@ -1,6 +1,6 @@
 package ar.meli.agg.weatherpredictor.domain;
 
-public class Planet extends Element implements Translation{
+public class Planet extends Element implements Movable {
 
     private String name;
 

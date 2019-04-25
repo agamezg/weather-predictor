@@ -22,7 +22,7 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 @RunWith(MockitoJUnitRunner.class)
-public class WeatherPredictorControllerTest {
+public class WeatherPredictorControllerTests {
 
     private MockMvc mvc;
 

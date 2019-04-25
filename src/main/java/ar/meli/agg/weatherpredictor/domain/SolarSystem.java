@@ -3,17 +3,13 @@ package ar.meli.agg.weatherpredictor.domain;
 import ar.meli.agg.weatherpredictor.utils.GeometryCalculator;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-class SolarSystem {
-
-    Sun sun;
+abstract class SolarSystem {
 
     List<Planet> planets;
 
     SolarSystem() {
-        this.sun = new Sun(new PolarPosition());
         this.planets = new ArrayList<>();
     }
 
@@ -23,12 +19,36 @@ class SolarSystem {
     }
 
     public boolean areAllAligned() {
-        List<Element> elements = new ArrayList<>(planets);
-        elements.add(sun);
-        return GeometryCalculator.areAligned(elements);
+        if(!planets.isEmpty()) {
+            boolean allAligned = true;
+            double angle = planets.get(0).getPolarPosition().getAngle();
+            Planet p;
+            int i = 0;
+            while (i < planets.size() && allAligned) {
+                p = planets.get(i);
+                if (!GeometryCalculator.areAligned(angle, p.getPolarPosition().getAngle())){
+                    allAligned = false;
+                }
+                i++;
+            }
+            return allAligned;
+        }
+        else {
+            return false;
+        }
     }
 
     public boolean areThePlanetsAligned() {
+        return GeometryCalculator.areAligned(planets);
+    }
+
+    public boolean areTheSunInside() {
+        //TODO probar que ninguna cemicircunsferencia
+        // encierra a todo los puntos
+        return false;
+    }
+
+    public boolean isTheBiggerPerimeter() {
         return false;
     }
 }
