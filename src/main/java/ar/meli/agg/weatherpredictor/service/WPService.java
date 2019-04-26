@@ -56,14 +56,14 @@ public class WPService implements CommandLineRunner {
         else if (mlSolarSystem.areThePlanetsAligned()){
             wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.BEAUTIFULL_DAY);
         }
-        else if(mlSolarSystem.areTheSunInside()){
+        else if(mlSolarSystem.areTheSunOutSide()){
+            wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.CLOUDY);
+        }
+        else {
             if(mlSolarSystem.isTheBiggerPerimeter())
                 wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.HARD_RAIN);
             else
                 wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.RAIN);
-        }
-        else {
-            wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.CLOUDY);
         }
         return wp;
     }

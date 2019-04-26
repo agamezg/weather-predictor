@@ -3,6 +3,7 @@ package ar.meli.agg.weatherpredictor.utils;
 import ar.meli.agg.weatherpredictor.domain.Element;
 import ar.meli.agg.weatherpredictor.domain.Planet;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
 
@@ -46,5 +47,46 @@ public class GeometryCalculator {
             return m*(x-x1)+y1-y;
         };
         return lineFunction;
+    }
+
+    public static boolean areContainedInASemicircle(List<Planet> planets) {
+        boolean areContained = true;
+        planets.sort(Comparator.comparingDouble(p -> p.getPolarPosition().getAngle()));
+        Double smallestAngle = planets.get(0).getPolarPosition().getAngle();
+        Double semicircle = sumDegrees(smallestAngle, 180D);
+        Double angle;
+        int i = 0;
+        while (i < planets.size() && areContained){
+            angle = planets.get(i).getPolarPosition().getAngle();
+            if(angle > semicircle){
+                areContained = false;
+            }
+            i++;
+        }
+        return areContained;
+    }
+
+    public static Double sumDegrees(Double a1, Double a2){
+
+        double a = a1 + a2;
+        if(a > 360) {
+            a = a - 360;
+        }
+        else if(a < 0){
+            a = a + 360;
+        }
+        return a;
+    }
+
+    public static Double subsDegrees(Double a1, Double a2){
+
+        double a = a1 - a2;
+        if(a > 360) {
+            a = a - 360;
+        }
+        else if(a < 0){
+            a = 360 - Math.abs(a);
+        }
+        return a;
     }
 }

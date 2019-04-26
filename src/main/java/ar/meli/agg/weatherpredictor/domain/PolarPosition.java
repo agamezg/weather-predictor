@@ -1,5 +1,7 @@
 package ar.meli.agg.weatherpredictor.domain;
 
+import static ar.meli.agg.weatherpredictor.utils.GeometryCalculator.sumDegrees;
+
 public class PolarPosition {
 
     private double radius;
@@ -31,17 +33,8 @@ public class PolarPosition {
         return new CartesianPosition(x,y);
     }
 
-    public void moveAngle(long angle) {
-        double moved = this.angle+angle;
-
-        if(moved > 360) {
-            moved = moved - 360;
-        }
-        else if(moved < 0){
-            moved = 360 + moved;
-        }
-
-        this.angle = moved;
+    public void moveAngle(double angle) {
+        this.angle = sumDegrees(this.angle, angle);
     }
 
     public void setAngle(double angle){

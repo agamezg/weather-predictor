@@ -1,9 +1,10 @@
 package ar.meli.agg.weatherpredictor.domain;
 
-import ar.meli.agg.weatherpredictor.utils.GeometryCalculator;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static ar.meli.agg.weatherpredictor.utils.GeometryCalculator.*;
 
 abstract class SolarSystem {
 
@@ -26,7 +27,7 @@ abstract class SolarSystem {
             int i = 0;
             while (i < planets.size() && allAligned) {
                 p = planets.get(i);
-                if (!GeometryCalculator.areAligned(angle, p.getPolarPosition().getAngle())){
+                if (!areAligned(angle, p.getPolarPosition().getAngle())){
                     allAligned = false;
                 }
                 i++;
@@ -39,13 +40,11 @@ abstract class SolarSystem {
     }
 
     public boolean areThePlanetsAligned() {
-        return GeometryCalculator.areAligned(planets);
+        return areAligned(planets);
     }
 
-    public boolean areTheSunInside() {
-        //TODO probar que ninguna cemicircunsferencia
-        // encierra a todo los puntos
-        return false;
+    public boolean areTheSunOutSide() {
+        return areContainedInASemicircle(planets);
     }
 
     public boolean isTheBiggerPerimeter() {

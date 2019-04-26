@@ -2,7 +2,7 @@ package ar.meli.agg.weatherpredictor.domain;
 
 public class Speed {
 
-    private int angle;
+    private double angle;
 
     private int time;
 
@@ -15,7 +15,7 @@ public class Speed {
         this.time = time;
     }
 
-    int getAngle() {
+    double getAngle() {
         return angle;
     }
 
@@ -23,7 +23,7 @@ public class Speed {
         return time;
     }
 
-    long getValue() {
+    double getValue() {
         return angle/time;
     }
 }
