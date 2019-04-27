@@ -1,8 +1,10 @@
 package ar.meli.agg.weatherpredictor.utils;
 
+import ar.meli.agg.weatherpredictor.domain.CartesianPosition;
 import ar.meli.agg.weatherpredictor.domain.Element;
 import ar.meli.agg.weatherpredictor.domain.Planet;
 
+import java.text.DecimalFormat;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
@@ -64,15 +66,15 @@ public class GeometryCalculator {
     }
 
     private static boolean bellowSemicircle(List<Planet> planets, Double smallestAngle) {
-        int j = 1;
-        Double semicircle2 = subsDegrees(smallestAngle, 180D);
+        int i = 1;
+        Double semicircle = subsDegrees(smallestAngle, 180D);
         Double angle2;
-        while (j < planets.size()){
-            angle2 = planets.get(j).getPolarPosition().getAngle();
-            if(semicircle2 > angle2){
+        while (i < planets.size()){
+            angle2 = planets.get(i).getPolarPosition().getAngle();
+            if(semicircle > angle2){
                 return true;
             }
-            j++;
+            i++;
         }
         return false;
     }
@@ -113,5 +115,26 @@ public class GeometryCalculator {
             a = 360 - Math.abs(a);
         }
         return a;
+    }
+
+    public static double calculatePerimeter(List<Planet> planets) {
+        DecimalFormat format = new DecimalFormat("##.##");
+        double perimeter = 0;
+        CartesianPosition point1;
+        CartesianPosition point2;
+        int nextIndex;
+        int planetsCount = planets.size();
+        for (int i = 0; i < planetsCount; i++) {
+            nextIndex = i == planetsCount -1 ? 0 : i + 1;
+            point1 = planets.get(i).getCartesianPosition();
+            point2 = planets.get(nextIndex).getCartesianPosition();
+
+            perimeter += calculateDistance(point1, point2);
+        }
+        return Math.round(perimeter*100.0)/100.0;
+    }
+
+    private static double calculateDistance(CartesianPosition point1, CartesianPosition point2) {
+        return Math.sqrt(Math.pow(point2.getY()-point1.getY(),2) + Math.pow(point2.getX()-point1.getX(),2));
     }
 }

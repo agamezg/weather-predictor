@@ -1,6 +1,9 @@
 package ar.meli.agg.weatherpredictor.domain;
 
 
+import ar.meli.agg.weatherpredictor.exception.NotAFigureException;
+import ar.meli.agg.weatherpredictor.utils.GeometryCalculator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,11 +46,18 @@ abstract class SolarSystem {
         return areAligned(planets);
     }
 
-    public boolean areTheSunOutSide() {
+    public boolean areTheSunOutside() {
         return areContainedInASemicircle(planets);
     }
 
-    public boolean isTheBiggerPerimeter() {
-        return false;
+    public double getPerimeter() throws NotAFigureException {
+        double perimeter;
+        if(planets.size() > 3 && !areAllAligned() && !areThePlanetsAligned()){
+            perimeter = GeometryCalculator.calculatePerimeter(planets);
+        }
+        else {
+            throw new NotAFigureException();
+        }
+        return perimeter;
     }
 }

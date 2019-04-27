@@ -3,6 +3,7 @@ package ar.meli.agg.weatherpredictor.service;
 import ar.meli.agg.weatherpredictor.domain.MLSolarSystem;
 import ar.meli.agg.weatherpredictor.domain.Weather;
 import ar.meli.agg.weatherpredictor.domain.WeatherPrediction;
+import ar.meli.agg.weatherpredictor.exception.NotAFigureException;
 import ar.meli.agg.weatherpredictor.repository.WPRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
 
 @Service
 public class WPService implements CommandLineRunner {
@@ -24,12 +26,15 @@ public class WPService implements CommandLineRunner {
 
     private final MLSolarSystem mlSolarSystem;
 
+    private final HashMap perimeters;
+
     private static Logger log = LoggerFactory.getLogger(WPService.class);
 
     @Autowired
     public WPService(WPRepository wpRepository) {
         this.wpRepository = wpRepository;
         this.mlSolarSystem = MLSolarSystem.getInstance();
+        this.perimeters = new HashMap<Integer, Double>();
     }
 
     public WeatherPrediction find(Integer day) {
@@ -56,16 +61,27 @@ public class WPService implements CommandLineRunner {
         else if (mlSolarSystem.areThePlanetsAligned()){
             wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.BEAUTIFULL_DAY);
         }
-        else if(mlSolarSystem.areTheSunOutSide()){
+        else if(mlSolarSystem.areTheSunOutside()){
             wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.CLOUDY);
         }
         else {
-            if(mlSolarSystem.isTheBiggerPerimeter())
+            if(isBiggerPerimeter())
                 wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.HARD_RAIN);
             else
                 wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.RAIN);
         }
         return wp;
+    }
+
+    private boolean isBiggerPerimeter() {
+        try {
+            boolean isBigger = false;
+            double perimeter = mlSolarSystem.getPerimeter();
+            return isBigger;
+        }
+        catch (NotAFigureException nafe){
+            return false;
+        }
     }
 
     @Scheduled(cron = "${schedule}")
