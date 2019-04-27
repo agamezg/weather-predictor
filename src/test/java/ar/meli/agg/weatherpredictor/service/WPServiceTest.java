@@ -310,4 +310,26 @@ public class WPServiceTest {
 
         assertThat(weatherPrediction.getWeather()).isEqualTo(expectedWeather.getWeather());
     }
+
+    @Test
+    public void predictPlanetsTriangleSunInSide_2(){
+
+        Planet betasoide = new Planet(BETASOIDE,
+                new PolarPosition(2000, 240),
+                new Speed(3));
+        Planet vulcano = new Planet(VULCANO,
+                new PolarPosition(1000, 85),
+                new Speed(-5));
+        Planet ferengi = new Planet(FERENGI,
+                new PolarPosition(500, 290),
+                new Speed(1));
+
+        mlSolarSystem.setPlanets(Arrays.asList(betasoide, vulcano, ferengi));
+
+        WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.RAIN);
+
+        WeatherPrediction weatherPrediction = wpService.predict();
+
+        assertThat(weatherPrediction.getWeather()).isEqualTo(expectedWeather.getWeather());
+    }
 }

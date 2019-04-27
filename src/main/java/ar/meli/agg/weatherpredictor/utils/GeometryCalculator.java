@@ -50,12 +50,37 @@ public class GeometryCalculator {
     }
 
     public static boolean areContainedInASemicircle(List<Planet> planets) {
-        boolean areContained = true;
+        boolean areContained;
         planets.sort(Comparator.comparingDouble(p -> p.getPolarPosition().getAngle()));
         Double smallestAngle = planets.get(0).getPolarPosition().getAngle();
-        Double semicircle = sumDegrees(smallestAngle, 180D);
+        Double semicircleAngle = sumDegrees(smallestAngle, 180D);
+
+        areContained = upperSemicircle(planets, semicircleAngle);
+
+        if(!areContained){
+            return !bellowSemicircle(planets, smallestAngle);
+        }
+        return true;
+    }
+
+    private static boolean bellowSemicircle(List<Planet> planets, Double smallestAngle) {
+        int j = 1;
+        Double semicircle2 = subsDegrees(smallestAngle, 180D);
+        Double angle2;
+        while (j < planets.size()){
+            angle2 = planets.get(j).getPolarPosition().getAngle();
+            if(semicircle2 > angle2){
+                return true;
+            }
+            j++;
+        }
+        return false;
+    }
+
+    private static boolean upperSemicircle(List<Planet> planets, Double semicircle) {
+        boolean areContained = true;
         Double angle;
-        int i = 0;
+        int i = 1;
         while (i < planets.size() && areContained){
             angle = planets.get(i).getPolarPosition().getAngle();
             if(angle > semicircle){
