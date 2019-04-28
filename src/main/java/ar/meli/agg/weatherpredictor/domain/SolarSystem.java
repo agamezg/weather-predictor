@@ -64,4 +64,6 @@ abstract class SolarSystem {
     public boolean areTheSunInside() {
         return areInsideTheTriangle(planets, sun);
     }
+
+    public abstract void init();
 }

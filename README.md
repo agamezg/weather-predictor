@@ -82,7 +82,7 @@ Tomando como bases las condiciones climaologícas presentadas en el problema se 
 | Nublado | planetas formando un triángulo con el sol fuera |
 
 ### API
-Para dar solución a los requerimientos se diseñó una arquitectura monolítica teniendo en cuenta el tamaño y necesidad de procesamiento de la aplicación. Se utilizó una arquitectura MVC.
+Para dar solución a los requerimientos se diseñó una arquitectura monolítica teniendo en cuenta el tamaño y necesidad de procesamiento de la aplicación. Se utilizó una arquitectura MVC con una base de datos embevida (H2).
 
 #### Tecnologías utilizadas
 * [Spring-Boot 2.1.4.][spring]

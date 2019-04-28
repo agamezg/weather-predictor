@@ -9,7 +9,7 @@ public class MLSolarSystem extends SolarSystem {
 
     private static MLSolarSystem instance;
 
-    private Integer day;
+    private int day;
 
     public static MLSolarSystem getInstance(){
         if(instance == null){
@@ -20,6 +20,11 @@ public class MLSolarSystem extends SolarSystem {
 
     private MLSolarSystem(){
         super();
+        init();
+    }
+
+    @Override
+    public void init() {
         this.day = 0;
         Planet betasoide = new Planet(BETASOIDE, new PolarPosition(2000,0), new Speed(3));
         Planet vulcano = new Planet(VULCANO, new PolarPosition(1000,0), new Speed(-5));

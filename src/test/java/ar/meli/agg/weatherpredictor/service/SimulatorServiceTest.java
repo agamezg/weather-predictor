@@ -17,7 +17,7 @@ import static ar.meli.agg.weatherpredictor.utils.Constants.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(MockitoJUnitRunner.class)
-public class WPServiceTest {
+public class SimulatorServiceTest {
 
     @Mock
     MLSolarSystem mlSolarSystem;
@@ -26,7 +26,7 @@ public class WPServiceTest {
     SortedMap perimeters;
 
     @InjectMocks
-    WPService wpService;
+    SimulatorService simulatorService;
 
     @Before
     public void setUp(){
@@ -51,7 +51,7 @@ public class WPServiceTest {
 
         WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.DROUGHT);
 
-        WeatherPrediction weatherPrediction = wpService.predict();
+        WeatherPrediction weatherPrediction = simulatorService.predict();
 
         assertThat(weatherPrediction.getWeather()).isEqualTo(expectedWeather.getWeather());
     }
@@ -73,7 +73,7 @@ public class WPServiceTest {
 
         WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.DROUGHT);
 
-        WeatherPrediction weatherPrediction = wpService.predict();
+        WeatherPrediction weatherPrediction = simulatorService.predict();
 
         assertThat(weatherPrediction.getWeather()).isEqualTo(expectedWeather.getWeather());    }
 
@@ -94,7 +94,7 @@ public class WPServiceTest {
 
         WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.DROUGHT);
 
-        WeatherPrediction weatherPrediction = wpService.predict();
+        WeatherPrediction weatherPrediction = simulatorService.predict();
 
         assertThat(weatherPrediction.getWeather()).isEqualTo(expectedWeather.getWeather());    }
 
@@ -115,7 +115,7 @@ public class WPServiceTest {
 
         WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.DROUGHT);
 
-        WeatherPrediction weatherPrediction = wpService.predict();
+        WeatherPrediction weatherPrediction = simulatorService.predict();
 
         assertThat(weatherPrediction.getWeather()).isEqualTo(expectedWeather.getWeather());
     }
@@ -137,7 +137,7 @@ public class WPServiceTest {
 
         WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.BEAUTIFUL_DAY);
 
-        WeatherPrediction weatherPrediction = wpService.predict();
+        WeatherPrediction weatherPrediction = simulatorService.predict();
 
         assertThat(weatherPrediction.getWeather()).isEqualTo(expectedWeather.getWeather());
     }
@@ -159,7 +159,7 @@ public class WPServiceTest {
 
         WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.BEAUTIFUL_DAY);
 
-        WeatherPrediction weatherPrediction = wpService.predict();
+        WeatherPrediction weatherPrediction = simulatorService.predict();
 
         assertThat(weatherPrediction.getWeather()).isEqualTo(expectedWeather.getWeather());
     }
@@ -181,7 +181,7 @@ public class WPServiceTest {
 
         WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.BEAUTIFUL_DAY);
 
-        WeatherPrediction weatherPrediction = wpService.predict();
+        WeatherPrediction weatherPrediction = simulatorService.predict();
 
         assertThat(weatherPrediction.getWeather()).isEqualTo(expectedWeather.getWeather());
     }
@@ -203,7 +203,7 @@ public class WPServiceTest {
 
         WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.BEAUTIFUL_DAY);
 
-        WeatherPrediction weatherPrediction = wpService.predict();
+        WeatherPrediction weatherPrediction = simulatorService.predict();
 
         assertThat(weatherPrediction.getWeather()).isEqualTo(expectedWeather.getWeather());
     }
@@ -225,7 +225,7 @@ public class WPServiceTest {
 
         WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.CLOUDY);
 
-        WeatherPrediction weatherPrediction = wpService.predict();
+        WeatherPrediction weatherPrediction = simulatorService.predict();
 
         assertThat(weatherPrediction.getWeather()).isEqualTo(expectedWeather.getWeather());
     }
@@ -247,7 +247,7 @@ public class WPServiceTest {
 
         WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.CLOUDY);
 
-        WeatherPrediction weatherPrediction = wpService.predict();
+        WeatherPrediction weatherPrediction = simulatorService.predict();
 
         assertThat(weatherPrediction.getWeather()).isEqualTo(expectedWeather.getWeather());
     }
@@ -269,7 +269,7 @@ public class WPServiceTest {
 
         WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.CLOUDY);
 
-        WeatherPrediction weatherPrediction = wpService.predict();
+        WeatherPrediction weatherPrediction = simulatorService.predict();
 
         assertThat(weatherPrediction.getWeather()).isEqualTo(expectedWeather.getWeather());
     }
@@ -291,7 +291,7 @@ public class WPServiceTest {
 
         WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.CLOUDY);
 
-        WeatherPrediction weatherPrediction = wpService.predict();
+        WeatherPrediction weatherPrediction = simulatorService.predict();
 
         assertThat(weatherPrediction.getWeather()).isEqualTo(expectedWeather.getWeather());
     }
@@ -313,7 +313,7 @@ public class WPServiceTest {
 
         WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.CLOUDY);
 
-        WeatherPrediction weatherPrediction = wpService.predict();
+        WeatherPrediction weatherPrediction = simulatorService.predict();
 
         assertThat(weatherPrediction.getWeather()).isEqualTo(expectedWeather.getWeather());
     }
@@ -335,7 +335,7 @@ public class WPServiceTest {
 
         WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.RAIN);
 
-        WeatherPrediction weatherPrediction = wpService.predict();
+        WeatherPrediction weatherPrediction = simulatorService.predict();
 
         assertThat(weatherPrediction.getWeather()).isEqualTo(expectedWeather.getWeather());
     }
@@ -357,7 +357,7 @@ public class WPServiceTest {
 
         WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.RAIN);
 
-        WeatherPrediction weatherPrediction = wpService.predict();
+        WeatherPrediction weatherPrediction = simulatorService.predict();
 
         assertThat(weatherPrediction.getWeather()).isEqualTo(expectedWeather.getWeather());
     }
@@ -379,7 +379,7 @@ public class WPServiceTest {
 
         WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.RAIN);
 
-        WeatherPrediction weatherPrediction = wpService.predict();
+        WeatherPrediction weatherPrediction = simulatorService.predict();
 
         assertThat(weatherPrediction.getWeather()).isEqualTo(expectedWeather.getWeather());
     }
