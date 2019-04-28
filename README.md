@@ -60,7 +60,7 @@ consultado.
 Cloudfoudry) y enviar la URL para consulta:
 
 ## Solución
-Para un mejor entendimiento de los datos brindados se mostrarán en forma de tablas. A continuación las carácterísticas físicas del sistema, velocidad angular, y distancia de cada planeta con respecto al sol. Si bien no tenemos explícitamente el dato del perído de cada planeta (tiempo en completar una vuelta alrededor del sol) se considera de utilidad mostrarlo.
+Para un mejor entendimiento de los datos brindados se mostrarán en forma de tablas. A continuación las características físicas del sistema, velocidad angular, y distancia de cada planeta con respecto al sol. Si bien no tenemos explícitamente el dato del perído de cada planeta (tiempo en completar una vuelta alrededor del sol) se considera de utilidad mostrarlo.
 
 ### Características físicas del sistema
 | Planeta | Velocidad Angular (grado/día)| Radio (Km) | Período (días) |
@@ -85,11 +85,13 @@ Tomando como bases las condiciones climaologícas presentadas en el problema se 
 Para dar solución a los requerimientos se diseñó una arquitectura monolítica teniendo en cuenta el tamaño y necesidad de procesamiento de la aplicación. Se utilizó una arquitectura MVC.
 
 #### Tecnologías utilizadas
-* Spring-Boot 2.1.4.
-* Java 8.
-* Maven 3.5.4.
+* [Spring-Boot 2.1.4.][spring]
+* [Java 8.][java]
+* [Maven 3.5.4.][maven]
   
 #### Endpoints
+Todos los endpoints serán métodos GET
+
 
 
 ### Datos asumidos
@@ -99,3 +101,8 @@ Para dar solución a los requerimientos se diseñó una arquitectura monolítica
 * Se iniciará la simulación en el día 0, y a continuación se procederá a simular 10 años (720 días) en adelante, por lo que al iniciar el programa veremos que tenemos 721 días simulados.
 
 ## Conclusión
+
+[spring]:https://spring.io/projects/spring-boot
+[maven]:https://maven.apache.org
+[java]:https://www.java.com/es/download/faq/java8.xml
+
