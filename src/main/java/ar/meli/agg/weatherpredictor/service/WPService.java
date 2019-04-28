@@ -43,12 +43,12 @@ public class WPService implements CommandLineRunner {
     }
 
     @Scheduled(cron = "${schedule}")
-    public void dailyPredictionJob(){
+    public void dailyPredictionJob() {
         log.info("Entrando al job para predecir clima a las " + new Date().toString());
         int perimetersSize = perimeters.size();
         double actualBiggerPerimeter = perimeters.lastKey();
         simulate(1);
-        if(perimetersSize < perimeters.size()){
+        if (perimetersSize < perimeters.size()) {
             unsetHardRainyDays(actualBiggerPerimeter);
             setHardRainyDays();
         }
@@ -70,25 +70,23 @@ public class WPService implements CommandLineRunner {
 
     WeatherPrediction predict() {
         WeatherPrediction wp;
-        if(mlSolarSystem.areAllAligned()){
+        if (mlSolarSystem.areAllAligned()) {
             wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.DROUGHT);
-        }
-        else if (mlSolarSystem.areThePlanetsAligned()){
+        } else if (mlSolarSystem.areThePlanetsAligned()) {
             wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.BEAUTIFUL_DAY);
-        }
-        else if(mlSolarSystem.areTheSunOutside()){
-            wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.CLOUDY);
-        }
-        else {
+        } else if (mlSolarSystem.areTheSunInside()) {
             wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.RAIN);
             calculatePerimeter();
+        } else {
+            wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.CLOUDY);
+
         }
         return wp;
     }
 
-    private void simulate(int days){
+    private void simulate(int days) {
         WeatherPrediction wp;
-        for (int i = 0; i <= days; i++){
+        for (int i = 0; i <= days; i++) {
             wp = predict();
             mlSolarSystem.nextDay();
             wpRepository.save(wp);
@@ -99,21 +97,19 @@ public class WPService implements CommandLineRunner {
         try {
             int day = mlSolarSystem.getDay();
             double perimeter = mlSolarSystem.getPerimeter();
-            if(perimeters.containsKey(perimeter)){
+            if (perimeters.containsKey(perimeter)) {
                 List<Integer> days = perimeters.get(perimeter);
                 days.add(day);
-            }
-            else {
+            } else {
                 perimeters.put(perimeter, new ArrayList<>(Arrays.asList(day)));
             }
-        }
-        catch (NotAFigureException nafe){
+        } catch (NotAFigureException nafe) {
             log.info(nafe.getMessage());
         }
     }
 
     private void setHardRainyDays() {
-        if(!perimeters.isEmpty()) {
+        if (!perimeters.isEmpty()) {
             double biggerPerimeter = perimeters.lastKey();
             List<Integer> hardRainyDays = perimeters.get(biggerPerimeter);
             hardRainyDays.forEach(day -> wpRepository.save(new WeatherPrediction(day, Weather.HARD_RAIN)));
@@ -121,7 +117,7 @@ public class WPService implements CommandLineRunner {
     }
 
     private void unsetHardRainyDays(double olderBiggerPerimeter) {
-        if(!perimeters.isEmpty()){
+        if (!perimeters.isEmpty()) {
             List<Integer> olderHardRainyDays = perimeters.get(olderBiggerPerimeter);
             olderHardRainyDays.forEach(day -> wpRepository.save(new WeatherPrediction(day, Weather.RAIN)));
         }

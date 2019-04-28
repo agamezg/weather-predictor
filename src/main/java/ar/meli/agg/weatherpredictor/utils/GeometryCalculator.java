@@ -3,9 +3,8 @@ package ar.meli.agg.weatherpredictor.utils;
 import ar.meli.agg.weatherpredictor.domain.CartesianPosition;
 import ar.meli.agg.weatherpredictor.domain.Element;
 import ar.meli.agg.weatherpredictor.domain.Planet;
+import ar.meli.agg.weatherpredictor.domain.Sun;
 
-import java.text.DecimalFormat;
-import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
 
@@ -51,46 +50,26 @@ public class GeometryCalculator {
         return lineFunction;
     }
 
-    public static boolean areContainedInASemicircle(List<Planet> planets) {
-        boolean areContained;
-        planets.sort(Comparator.comparingDouble(p -> p.getPolarPosition().getAngle()));
-        Double smallestAngle = planets.get(0).getPolarPosition().getAngle();
-        Double semicircleAngle = sumDegrees(smallestAngle, 180D);
+    public static boolean areInsideTheTriangle(List<Planet> planets, Sun sun) {
+        double d1, d2, d3;
+        boolean hasNeg, hasPos;
+        CartesianPosition p1 = planets.get(0).getCartesianPosition();
+        CartesianPosition p2 = planets.get(1).getCartesianPosition();
+        CartesianPosition p3 = planets.get(2).getCartesianPosition();
+        CartesianPosition s = sun.getCartesianPosition();
 
-        areContained = upperSemicircle(planets, semicircleAngle);
+        d1 = sign(s,p1,p2);
+        d2 = sign(s,p2,p3);
+        d3 = sign(s,p3,p1);
 
-        if(!areContained){
-            return !bellowSemicircle(planets, smallestAngle);
-        }
-        return true;
+        hasNeg = (d1 < 0) || (d2 < 0) || (d3 < 0);
+        hasPos = (d1 > 0) || (d2 > 0) || (d3 > 0);
+
+        return !(hasNeg && hasPos);
     }
 
-    private static boolean bellowSemicircle(List<Planet> planets, Double smallestAngle) {
-        int i = 1;
-        Double semicircle = subsDegrees(smallestAngle, 180D);
-        Double angle2;
-        while (i < planets.size()){
-            angle2 = planets.get(i).getPolarPosition().getAngle();
-            if(semicircle > angle2){
-                return true;
-            }
-            i++;
-        }
-        return false;
-    }
-
-    private static boolean upperSemicircle(List<Planet> planets, Double semicircle) {
-        boolean areContained = true;
-        Double angle;
-        int i = 1;
-        while (i < planets.size() && areContained){
-            angle = planets.get(i).getPolarPosition().getAngle();
-            if(angle > semicircle){
-                areContained = false;
-            }
-            i++;
-        }
-        return areContained;
+    private static double sign(CartesianPosition p1, CartesianPosition p2, CartesianPosition p3) {
+        return (p1.getX() - p3.getX()) * (p2.getY() - p3.getY()) - (p2.getX() - p3.getX()) * (p1.getY() - p3.getY());
     }
 
     public static Double sumDegrees(Double a1, Double a2){
@@ -118,7 +97,6 @@ public class GeometryCalculator {
     }
 
     public static double calculatePerimeter(List<Planet> planets) {
-        DecimalFormat format = new DecimalFormat("##.##");
         double perimeter = 0;
         CartesianPosition point1;
         CartesianPosition point2;

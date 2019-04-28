@@ -8,13 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static ar.meli.agg.weatherpredictor.utils.GeometryCalculator.areAligned;
-import static ar.meli.agg.weatherpredictor.utils.GeometryCalculator.areContainedInASemicircle;
+import static ar.meli.agg.weatherpredictor.utils.GeometryCalculator.areInsideTheTriangle;
 
 abstract class SolarSystem {
+
+    Sun sun;
 
     List<Planet> planets;
 
     SolarSystem() {
+        this.sun = new Sun(new PolarPosition(0,0));
         this.planets = new ArrayList<>();
     }
 
@@ -47,10 +50,6 @@ abstract class SolarSystem {
         return areAligned(planets);
     }
 
-    public boolean areTheSunOutside() {
-        return areContainedInASemicircle(planets);
-    }
-
     public double getPerimeter() throws NotAFigureException {
         double perimeter;
         if(planets.size() >= 3 && !areAllAligned() && !areThePlanetsAligned()){
@@ -60,5 +59,9 @@ abstract class SolarSystem {
             throw new NotAFigureException();
         }
         return perimeter;
+    }
+
+    public boolean areTheSunInside() {
+        return areInsideTheTriangle(planets, sun);
     }
 }
