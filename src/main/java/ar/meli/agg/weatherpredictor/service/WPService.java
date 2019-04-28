@@ -13,8 +13,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.HashMap;
+import java.util.*;
 
 @Service
 public class WPService implements CommandLineRunner {
@@ -26,7 +25,7 @@ public class WPService implements CommandLineRunner {
 
     private final MLSolarSystem mlSolarSystem;
 
-    private final HashMap perimeters;
+    private final SortedMap<Double, List<Integer>> perimeters;
 
     private static Logger log = LoggerFactory.getLogger(WPService.class);
 
@@ -34,7 +33,7 @@ public class WPService implements CommandLineRunner {
     public WPService(WPRepository wpRepository) {
         this.wpRepository = wpRepository;
         this.mlSolarSystem = MLSolarSystem.getInstance();
-        this.perimeters = new HashMap<Integer, Double>();
+        this.perimeters = new TreeMap<>();
     }
 
     public WeatherPrediction find(Integer day) {
@@ -51,6 +50,15 @@ public class WPService implements CommandLineRunner {
             mlSolarSystem.nextDay();
             wpRepository.save(wp);
         }
+        setHardRainyDays();
+    }
+
+    private void setHardRainyDays() {
+        if(!perimeters.isEmpty()) {
+            double biggerPerimeter = perimeters.lastKey();
+            List<Integer> hardRainyDays = perimeters.get(biggerPerimeter);
+            hardRainyDays.forEach(day -> wpRepository.save(new WeatherPrediction(day, Weather.HARD_RAIN)));
+        }
     }
 
     WeatherPrediction predict() {
@@ -65,23 +73,43 @@ public class WPService implements CommandLineRunner {
             wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.CLOUDY);
         }
         else {
-            if(isBiggerPerimeter())
-                wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.HARD_RAIN);
-            else
-                wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.RAIN);
+            wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.RAIN);
+            calculatePerimeter();
         }
         return wp;
     }
 
-    private boolean isBiggerPerimeter() {
+    private void calculatePerimeter() {
         try {
+            int day = mlSolarSystem.getDay();
+            double perimeter = mlSolarSystem.getPerimeter();
+            if(perimeters.containsKey(perimeter)){
+                List<Integer> days = perimeters.get(perimeter);
+                days.add(day);
+            }
+            else {
+                perimeters.put(perimeter, Collections.singletonList(day));
+            }
+        }
+        catch (NotAFigureException nafe){
+            log.info(nafe.getMessage());
+        }
+    }
+
+    private boolean isBiggerPerimeter() {
+        /*try {
             boolean isBigger = false;
             double perimeter = mlSolarSystem.getPerimeter();
+            Object[] perimetersArray = perimeters.keySet().toArray();
+            int length = perimetersArray.length;
+            if(perimeters.values().toArray()[length -1] < perimeter)
             return isBigger;
         }
         catch (NotAFigureException nafe){
             return false;
-        }
+        }*/
+
+        return false;
     }
 
     @Scheduled(cron = "${schedule}")

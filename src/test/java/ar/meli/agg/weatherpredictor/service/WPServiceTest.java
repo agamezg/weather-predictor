@@ -9,6 +9,9 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import static ar.meli.agg.weatherpredictor.utils.Constants.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,12 +22,16 @@ public class WPServiceTest {
     @Mock
     MLSolarSystem mlSolarSystem;
 
+    @Mock
+    SortedMap perimeters;
+
     @InjectMocks
     WPService wpService;
 
     @Before
     public void setUp(){
         mlSolarSystem = MLSolarSystem.getInstance();
+        perimeters = new TreeMap<Double, List<Integer>>();
     }
 
     @Test
@@ -312,7 +319,29 @@ public class WPServiceTest {
     }
 
     @Test
-    public void predictPlanetsTriangleSunInSide_2(){
+    public void predictPlanetsTriangleSunInside_2(){
+
+        Planet betasoide = new Planet(BETASOIDE,
+                new PolarPosition(2000, 240),
+                new Speed(3));
+        Planet vulcano = new Planet(VULCANO,
+                new PolarPosition(1000, 85),
+                new Speed(-5));
+        Planet ferengi = new Planet(FERENGI,
+                new PolarPosition(500, 290),
+                new Speed(1));
+
+        mlSolarSystem.setPlanets(Arrays.asList(betasoide, vulcano, ferengi));
+
+        WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.RAIN);
+
+        WeatherPrediction weatherPrediction = wpService.predict();
+
+        assertThat(weatherPrediction.getWeather()).isEqualTo(expectedWeather.getWeather());
+    }
+
+    @Test
+    public void predictPlanetsTriangleSunInsideBiggerPerimeter(){
 
         Planet betasoide = new Planet(BETASOIDE,
                 new PolarPosition(2000, 240),
