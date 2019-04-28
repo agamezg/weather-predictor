@@ -2,6 +2,7 @@ package ar.meli.agg.weatherpredictor.controller;
 
 
 import ar.meli.agg.weatherpredictor.service.SimulatorService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,7 @@ public class SimulatorController {
         this.simulatorService = simulatorService;
     }
 
+    @ApiOperation(value = "Simulate the MELI solar system and passage of days, passed as request params")
     @PostMapping("/simulate")
     ResponseEntity<?> simulate(@RequestParam(name = "days", required = false) Integer days){
         Map<String, String> body;
