@@ -7,7 +7,8 @@ import ar.meli.agg.weatherpredictor.utils.GeometryCalculator;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ar.meli.agg.weatherpredictor.utils.GeometryCalculator.*;
+import static ar.meli.agg.weatherpredictor.utils.GeometryCalculator.areAligned;
+import static ar.meli.agg.weatherpredictor.utils.GeometryCalculator.areContainedInASemicircle;
 
 abstract class SolarSystem {
 
@@ -52,7 +53,7 @@ abstract class SolarSystem {
 
     public double getPerimeter() throws NotAFigureException {
         double perimeter;
-        if(planets.size() > 3 && !areAllAligned() && !areThePlanetsAligned()){
+        if(planets.size() >= 3 && !areAllAligned() && !areThePlanetsAligned()){
             perimeter = GeometryCalculator.calculatePerimeter(planets);
         }
         else {
