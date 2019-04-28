@@ -61,13 +61,20 @@ public class WPService implements CommandLineRunner {
         return weatherPrediction;
     }
 
+    public Map countDaysByWeather(Weather weather) {
+        HashMap<String, Integer> droughtDays = new HashMap<>();
+        int count = wpRepository.countAllByWeatherEquals(weather.toString());
+        droughtDays.put(weather.toString(), count);
+        return droughtDays;
+    }
+
     WeatherPrediction predict() {
         WeatherPrediction wp;
         if(mlSolarSystem.areAllAligned()){
             wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.DROUGHT);
         }
         else if (mlSolarSystem.areThePlanetsAligned()){
-            wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.BEAUTIFULL_DAY);
+            wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.BEAUTIFUL_DAY);
         }
         else if(mlSolarSystem.areTheSunOutside()){
             wp = new WeatherPrediction(mlSolarSystem.getDay(), Weather.CLOUDY);

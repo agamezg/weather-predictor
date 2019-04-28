@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface WPRepository extends JpaRepository<WeatherPrediction, Integer> {
 
+    Integer countAllByWeatherEquals(String weather);
+
 }

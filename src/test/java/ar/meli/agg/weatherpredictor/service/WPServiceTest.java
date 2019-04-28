@@ -135,7 +135,7 @@ public class WPServiceTest {
 
         mlSolarSystem.setPlanets(Arrays.asList(betasoide, vulcano, ferengi));
 
-        WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.BEAUTIFULL_DAY);
+        WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.BEAUTIFUL_DAY);
 
         WeatherPrediction weatherPrediction = wpService.predict();
 
@@ -157,7 +157,7 @@ public class WPServiceTest {
 
         mlSolarSystem.setPlanets(Arrays.asList(betasoide, vulcano, ferengi));
 
-        WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.BEAUTIFULL_DAY);
+        WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.BEAUTIFUL_DAY);
 
         WeatherPrediction weatherPrediction = wpService.predict();
 
@@ -179,7 +179,7 @@ public class WPServiceTest {
 
         mlSolarSystem.setPlanets(Arrays.asList(betasoide, vulcano, ferengi));
 
-        WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.BEAUTIFULL_DAY);
+        WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.BEAUTIFUL_DAY);
 
         WeatherPrediction weatherPrediction = wpService.predict();
 
@@ -201,7 +201,7 @@ public class WPServiceTest {
 
         mlSolarSystem.setPlanets(Arrays.asList(betasoide, vulcano, ferengi));
 
-        WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.BEAUTIFULL_DAY);
+        WeatherPrediction expectedWeather = new WeatherPrediction(0, Weather.BEAUTIFUL_DAY);
 
         WeatherPrediction weatherPrediction = wpService.predict();
 

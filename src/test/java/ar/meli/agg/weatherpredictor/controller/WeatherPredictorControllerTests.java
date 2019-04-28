@@ -74,7 +74,7 @@ public class WeatherPredictorControllerTests {
     }
 
     private WeatherPrediction aBeautifulDay() {
-        return new WeatherPrediction(200, Weather.BEAUTIFULL_DAY);
+        return new WeatherPrediction(200, Weather.BEAUTIFUL_DAY);
     }
     
     
