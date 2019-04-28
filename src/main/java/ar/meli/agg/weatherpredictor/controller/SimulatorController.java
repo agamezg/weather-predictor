@@ -5,7 +5,10 @@ import ar.meli.agg.weatherpredictor.service.SimulatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,16 +28,16 @@ public class SimulatorController {
         this.simulatorService = simulatorService;
     }
 
-    @GetMapping("/simulate")
+    @PostMapping("/simulate")
     ResponseEntity<?> simulate(@RequestParam(name = "days", required = false) Integer days){
-        Map<String, String> body = new HashMap<>();
+        Map<String, String> body;
         if(days != null) {
             simulatorService.startSimulation(days);
             body = buildBodyResponse(days);
         }
         else {
             simulatorService.startSimulation(this.days);
-            buildBodyResponse(this.days);
+            body = buildBodyResponse(this.days);
         }
         return ResponseEntity.ok(body);
     }
