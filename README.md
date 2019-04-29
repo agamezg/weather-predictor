@@ -13,9 +13,13 @@
     - [Climas posibles](#climas-posibles)
     - [API](#api)
       - [Tecnologías utilizadas](#tecnolog%C3%ADas-utilizadas)
+      - [Dependencias](#dependencias)
       - [Endpoints](#endpoints)
+      - [SimulatorController](#simulatorcontroller)
+      - [WPController](#wpcontroller)
     - [Datos asumidos](#datos-asumidos)
-  - [Conclusión](#conclusi%C3%B3n)
+  - [Aclaraciones](#aclaraciones)
+  - [Bibliografía](#bibliograf%C3%ADa)
 
 ## Problema
 
@@ -88,21 +92,60 @@ Para dar solución a los requerimientos se diseñó una arquitectura monolítica
 * [Spring-Boot 2.1.4.][spring]
 * [Java 8.][java]
 * [Maven 3.5.4.][maven]
+
+#### Dependencias
+* spring-boot-starter-cache
+* spring-boot-starter-data-rest
+* spring-boot-devtools
+* spring-boot-starter-test
+* org.springframework.cloud
+* springfox-swagger2
+* springfox-swagger-ui
+* h2
   
 #### Endpoints
-Todos los endpoints serán métodos GET
+Los endpoints fueron divididos en dos controladores, [SimulatorController][simulator-service] y [WPController][wp-service] (abreviatura de Weather Prediction). En el primero solo se encuentra el que desencadena la simulación, y en el segundo están los que actúan sobre el recurso WeatherPrediction.
 
-
+#### SimulatorController
+| Operación | Método HTTP | Ruta |
+| --- | :---: | :---: | :---: |
+| Simula sistema solar y paso del tiempo (pasado por parámetros o en su defecto 10 años vulcanos) | POST | [/simulate][simulate] |
+ 
+#### WPController
+| Operación | Método HTTP | Ruta |
+| --- | :---: | :---: | :---: |
+| Obtiene todos predicción del clima el día específicado en el request | GET | [/weather][weather] |
+| Obtiene la cantidad de días de sequía | GET | [/drought-days][drought-days] |
+| Obtiene cantidad de días de lluvia | GET | [/rainy-days][rainy-days] |
+| Obtiene cantidad de días de lluvia intensa | GET | [hardRainy-days][hardRainy-days] |
+| Obtiene cantidad de días con condiciones óptimas | GET | [/beautiful-days][beautiful-days] |
+| Obtiene cantidad de días nublados | GET | [/cloudy-days][cloudy-days] |
 
 ### Datos asumidos
-* Se tomará que un año es igual a 72 días, que es la duración del planeta Vulcano, ya que son los que consumirán la API.
+* Se tomará que un año es igual a 72 días, que es la duración del planeta Vulcano, ya que son los que consumirán la API según el enunciado del problema.
 * Se representarán los planetas en coordenadas polares, aunque para realizar algunos de los cálculos se hará la conversión a cartesianas con una presición de dos lugares decimáles.
 * El estado inicial del sistema solar será con todos los planetas ubicados sobre el eje polar.
-* Se iniciará la simulación en el día 0, y a continuación se procederá a simular 10 años (720 días) en adelante, por lo que al iniciar el programa veremos que tenemos 721 días simulados.
+* Se iniciará la simulación el día 0, y a continuación se procederá a simular 10 años (720 días) en adelante, por lo que al iniciar el programa veremos que tenemos 721 días simulados (el día actual + 720 días en edelante).
 
-## Conclusión
+## Aclaraciones
+En aras de agilizar el desarrollo, no se implementó ninguna seguridad para prevenir denegación de servicios y uso de fuerza bruta. No obstante se podría llegar a desarrollar fácilmente utilizando Spring Security. 
+
+## Bibliografía
+* https://www.baeldung.com/spring-boot-app-deploy-to-cloud-foundry
+* https://www.gamedev.net/forums/topic/295943-is-this-a-better-point-in-triangle-test-2d/
+* http://www.mathhands.com/104/hw/104c06s03ns.pdf
+* http://www.math.com/tables/geometry/circles.htm
+* https://www.gamedev.net/forums/topic/295943-is-this-a-better-point-in-triangle-test-2d/
 
 [spring]:https://spring.io/projects/spring-boot
 [maven]:https://maven.apache.org
 [java]:https://www.java.com/es/download/faq/java8.xml
-
+[simulator-service]:sdsds
+[wp-service]:dsds
+[simulate]:asdasd
+[weather]:asdsa
+[drought-days]:dsds
+[rainy-days]:hjsd
+[hardRainy-days]:jhsdjsd
+[beautiful-days]:kajsdksad
+[cloudy-days]:jashdj
