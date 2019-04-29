@@ -86,7 +86,7 @@ Tomando como bases las condiciones climaologícas presentadas en el problema se 
 | Nublado | planetas formando un triángulo con el sol fuera |
 
 ### API
-Para dar solución a los requerimientos se diseñó una arquitectura monolítica teniendo en cuenta el tamaño y necesidad de procesamiento de la aplicación. Se utilizó una arquitectura MVC con una base de datos embevida (H2).
+Para dar solución a los requerimientos se diseñó una arquitectura monolítica teniendo en cuenta el tamaño y necesidad de procesamiento de la aplicación. Se utilizó una arquitectura MVC con una base de datos embebida (H2).
 
 #### Tecnologías utilizadas
 * [Spring-Boot 2.1.4.][spring]
@@ -140,12 +140,12 @@ En aras de agilizar el desarrollo, no se implementó ninguna seguridad para prev
 [spring]:https://spring.io/projects/spring-boot
 [maven]:https://maven.apache.org
 [java]:https://www.java.com/es/download/faq/java8.xml
-[simulator-service]:sdsds
-[wp-service]:dsds
-[simulate]:asdasd
-[weather]:asdsa
-[drought-days]:dsds
-[rainy-days]:hjsd
-[hardRainy-days]:jhsdjsd
-[beautiful-days]:kajsdksad
-[cloudy-days]:jashdj
+[simulator-service]:https://weather-predictor-surprised-koala.cfapps.io/swagger-ui.html#/simulator-controller
+[wp-service]:https://weather-predictor-surprised-koala.cfapps.io/swagger-ui.html#/wp-controller
+[simulate]:https://weather-predictor-surprised-koala.cfapps.io/swagger-ui.html#/simulator-controller/simulateUsingPOST
+[weather]:https://weather-predictor-surprised-koala.cfapps.io/swagger-ui.html#/wp-controller/getWeatherUsingGET
+[drought-days]:https://weather-predictor-surprised-koala.cfapps.io/swagger-ui.html#/wp-controller/getDrouhtDaysUsingGET
+[rainy-days]:https://weather-predictor-surprised-koala.cfapps.io/swagger-ui.html#/wp-controller/getRainyDaysUsingGET
+[hardRainy-days]:https://weather-predictor-surprised-koala.cfapps.io/swagger-ui.html#/wp-controller/getHardRainyDaysUsingGET
+[beautiful-days]:https://weather-predictor-surprised-koala.cfapps.io/swagger-ui.html#/wp-controller/getBeautifulDaysUsingGET
+[cloudy-days]:https://weather-predictor-surprised-koala.cfapps.io/swagger-ui.html#/wp-controller/getCloudyDaysUsingGET
