@@ -125,7 +125,7 @@ Los endpoints fueron divididos en dos controladores, [SimulatorController][simul
 * Se tomará que un año es igual a 72 días, que es la duración del planeta Vulcano, ya que son los que consumirán la API según el enunciado del problema.
 * Se representarán los planetas en coordenadas polares, aunque para realizar algunos de los cálculos se hará la conversión a cartesianas con una presición de dos lugares decimáles.
 * El estado inicial del sistema solar será con todos los planetas ubicados sobre el eje polar.
-* Se iniciará la simulación el día 0, y a continuación se procederá a simular 10 años (720 días) en adelante, por lo que al iniciar el programa veremos que tenemos 721 días simulados (el día actual + 720 días en edelante).
+* Se iniciará la simulación el día 0, y a continuación se procederá a simular 10 años (720 días) en adelante, por lo que al iniciar el programa veremos que tenemos 721 días simulados (el día actual + 720 días en adelante).
 
 ## Aclaraciones
 En aras de agilizar el desarrollo, no se implementó ninguna seguridad para prevenir denegación de servicios y uso de fuerza bruta. No obstante se podría llegar a desarrollar fácilmente utilizando Spring Security. 
