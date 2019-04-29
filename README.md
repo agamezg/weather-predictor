@@ -70,8 +70,8 @@ Para un mejor entendimiento de los datos brindados se mostrarán en forma de tab
 | Planeta | Velocidad Angular (grado/día)| Radio (Km) | Período (días) |
 | --- | :---: | :---: | :---: |
 | **Betasoide** | 3 | 2000 | 120 |
-| **Vulcano** | -5 | 1000 | 360 | 
-| **Ferengi** | 1 | 500 | 720 |
+| **Vulcano** | -5 | 1000 | 72 | 
+| **Ferengi** | 1 | 500 | 360 |
 
 ### Climas posibles
 
@@ -86,7 +86,7 @@ Tomando como bases las condiciones climaologícas presentadas en el problema se 
 | Nublado | planetas formando un triángulo con el sol fuera |
 
 ### API
-Para dar solución a los requerimientos se diseñó una arquitectura monolítica teniendo en cuenta el tamaño y necesidad de procesamiento de la aplicación. Se utilizó una arquitectura MVC con una base de datos embebida (H2).
+Para dar solución a los requerimientos se diseñó una arquitectura monolítica teniendo en cuenta el tamaño y necesidad de procesamiento de la aplicación. Se utilizó una arquitectura MVC con una base de datos embebida (H2). Fue hosteada en cloudfoundry, con la url https://weather-predictor-surprised-koala.cfapps.io/
 
 #### Tecnologías utilizadas
 * [Spring-Boot 2.1.4.][spring]
