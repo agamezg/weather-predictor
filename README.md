@@ -108,12 +108,12 @@ Los endpoints fueron divididos en dos controladores, [SimulatorController][simul
 
 #### SimulatorController
 | Operación | Método HTTP | Ruta |
-| --- | :---: | :---: |
+| :--- | :--- | :--- |
 | Simula sistema solar y paso del tiempo (pasado por parámetros o en su defecto 10 años vulcanos) | POST | [/simulate][simulate] |
  
 #### WPController
 | Operación | Método HTTP | Ruta |
-| --- | :---: | :---: |
+| :--- | :--- | :--- |
 | Obtiene todos predicción del clima el día específicado en el request | GET | [/weather][weather] |
 | Obtiene la cantidad de días de sequía | GET | [/drought-days][drought-days] |
 | Obtiene cantidad de días de lluvia | GET | [/rainy-days][rainy-days] |
