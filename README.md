@@ -64,7 +64,7 @@ consultado.
 Cloudfoudry) y enviar la URL para consulta:
 
 ## Solución
-Para un mejor entendimiento de los datos brindados se mostrarán en forma de tablas. A continuación las características físicas del sistema, velocidad angular, y distancia de cada planeta con respecto al sol. Si bien no tenemos explícitamente el dato del perído de cada planeta (tiempo en completar una vuelta alrededor del sol) se considera de utilidad mostrarlo.
+Para un mejor entendimiento de los datos brindados se mostrarán en forma de tablas. A continuación las características físicas del sistema, velocidad angular, y distancia de cada planeta con respecto al sol. Si bien no tenemos explícitamente el dato del período de cada planeta (tiempo en completar una vuelta alrededor del sol) se considera de utilidad mostrarlo.
 
 ### Características físicas del sistema
 | Planeta | Velocidad Angular (grado/día)| Radio (Km) | Período (días) |
@@ -75,14 +75,14 @@ Para un mejor entendimiento de los datos brindados se mostrarán en forma de tab
 
 ### Climas posibles
 
-Tomando como bases las condiciones climaologícas presentadas en el problema se confecciona la siguiente tabla. Al analizar las posibles variantes, se decide asumir una condicón climática "Nublado" para el caso de que los planetas formen un triángulo con el sol fuera, ya que no queda explícito en los datos iniciales del problema.
+Al analizar las posibles variantes, se decide asumir una condicón climática "Nublado" para el caso de que los planetas formen un triángulo con el sol fuera, ya que no queda explícito en los datos iniciales del problema. Tomando como bases lo anterior se confecciona la siguiente tabla.
 
 | Disposición de los planetas | Clima | 
 | --- | :--- |
 | Sequía | todos los elementos alineados (planetas y sol) |
 |Día Hermoso | planetas alineados entre ellos pero no con el sol | 
 | Lluvia | planetas formando un triángulo con el sol dentro |
-| Lluvia Intensa | planetas formando un triángulo con el sol dentro (perímetro máximo) |
+| Lluvia Intensa | planetas formando un triángulo con el sol dentro (cuando el perímetro máximo) |
 | Nublado | planetas formando un triángulo con el sol fuera |
 
 ### API
